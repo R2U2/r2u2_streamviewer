@@ -1,0 +1,412 @@
+<!DOCTYPE HTML>
+
+<HTML lang="en">
+<HEAD>
+<TITLE>Timeline Validation Statistical Analysis Report</TITLE>
+
+<STYLE>
+    @page {
+        margin: 1in;
+	@bottom-center {
+            content: counter(page);
+            font-size: 10pt;
+        }
+    }
+
+    body {
+        font-family: serif;
+        line-height: 1.6;
+    }
+
+    .title-page {
+        text-align: center;
+        margin-top: 35%;
+    }
+
+    .author {
+        margin-top: 2em;
+        font-weight: bold;
+	font-size: 14pt;
+    }
+
+    .date {
+        margin-top: 0.5em;
+	font-size: 12pt;
+    }
+
+    .page-break {
+        page-break-before: always;
+    }
+
+    h1, h2 {
+        page-break-after: avoid;
+    }
+    
+    .data-table {
+	border-collapse: collapse;
+	max-width: 100%;
+	width: 100%;
+	table-layout: fixed;
+    }
+    .data-table th {
+	border: 1px solid black;
+	background-color: #D3D3D3;
+	color: black;
+	text-align: center;
+	font-size: 12px;
+    }
+    .data-table td {
+	border: 1px solid black;
+	padding: 6px;
+	text-align: left;
+	word-wrap: break-word;
+    }
+
+    @page landscape_page {
+    size: A4 landscape;
+    margin: 1cm;
+    }
+
+    .landscape {
+	page: landscape_page;
+    }
+    .heatmap {
+    display: block;
+    margin: auto;
+    width: 60%;
+    max-height: 90vh;
+    height: auto;
+    object-fit: contain;
+    page-break-inside: avoid;
+    }
+</STYLE>
+
+</HEAD>
+
+<BODY>
+
+  <!------------ TITLE PAGE ------------>
+  <DIV CLASS="title-page">
+    <H1>Timeline Validation Statistical Analysis Report</H1>
+    <P class="author"></P>
+    <P class="date"></P>
+  </DIV>
+
+
+<!------------ TABLE OF CONTENTS ------------>
+<H2> Table of Contents </H2>
+
+<UL CLASS="TofC">
+  <LI><A href="#summary">Summary</A></LI>
+  <LI><A href="#intro">Introductions</A></LI>
+  <LI><A href="#timeline_configs">Timeline Configurations</A></LI>
+  <LI><A href="#r2u2_output_analysis">Statistical Analysis of R2U2 Output</A>
+  <UL>
+    <LI><A href="#overall_stats">Overall Statistics</A></LI>
+    <LI><A href="#task_stats">Task-Based Statistics</A></LI>
+    <LI><A href="#contract_stats">Contract-Based Statistics</A></LI>
+    <LI><A href="#mc_summary">Monte Carlo Simulation Summary</A></LI>
+  </UL>
+  </LI>
+  <LI><A href="#visual_out">Visualizing Timeline Outcomes</A>
+  <UL>
+    <LI><A href="#task_visual">Task Outcome Visualization</A></LI>
+    <LI><A href="#contract_visual">Contract Outcome Visualization</A></LI>
+  </UL>
+  </LI>
+  <LI><A href="#conclusion">Conclusion</A></LI>
+</UL>
+
+<DIV CLASS="page-break"></DIV>
+
+
+<!------------ Summary (takes user input) ------------>
+
+<H2 ID="summary">Summary</H2>
+<P></P>
+
+<!------------ Summary (auto generated) ------------>
+<H2 ID="intro">Introduction</H2>
+  <P>Analysis was conducted on <B>4 mission timelines</B> using a  <B>1000-run stopping rule</B>.</P>
+  
+  <P>The analysis evaluates the timeline from <B>Timeline Filename</B>.</P>
+
+  <P>There are <B>41 events</B> per timeline instance.</P>
+  
+  <P><B>70 tasks</B> failed at some point during the Monte Carlo Trial.</P>
+
+  <P>The most frequently failed task was <B>Task abce1235</B>.</P>
+
+
+<DIV CLASS="page-break"></DIV>
+<!------------ SECTIONS ------------>
+
+<H2 ID="timeline_configs">Timeline Configurations</H2>
+  <P><B>Timeline Name: </B>Timeline Filename</P>
+  <P><B>Timeline Identifier: </B>Timeline ID</P>
+  <P><B>Filename & Location: </B>Timeline Filename</P>
+  <P><B>Start of Timeline: </B>0</P>
+  <P><B>End of Timeline: </B></P>
+  <UL>
+    <LI><B>Minimum: </B>5</LI>
+    <LI><B>Maximum: </B>8</LI>
+  </UL>
+  <P><B>Timeline Minimum Duration: </B>5</P>
+  <P><B>Timeline Maximum Duration: </B>8</P>
+
+  <P><B>Configuration Parameters: </B></P>
+  <UL>
+    <LI><B>Probability Density Function: </B>Probability Density Function Filename</LI>
+  </UL>
+
+<DIV CLASS="page-break"></DIV>
+
+<!------------ SECTIONS ------------>
+
+<H2 ID="r2u2_output_analysis">Statistical Analysis of R2U2 Output</H2>
+
+<H3 ID="overall_stats">Overall Statistics</H3>
+<TABLE class="data-table">
+    <TBODY>
+        <TR>
+            <TD>Total Contracts Evaluated</TD>
+            <TD>6</TD>
+        </TR>
+        <TR>
+            <TD>Contracts Passed</TD>
+            <TD>0</TD>
+        </TR>
+        <TR>
+            <TD>Contracts Failed</TD>
+            <TD>6</TD>
+        </TR>
+        <TR>
+            <TD>Pass Percentage</TD>
+            <TD>0.0</TD>
+        </TR>
+        <TR>
+            <TD>Fail Percentage</TD>
+            <TD>100.0</TD>
+        </TR>
+    </TBODY>
+</TABLE>
+
+
+
+<H3 ID="task_stats">Task-Based Statistics</H3>
+<UL>
+  <LI><B>Confidence Interval Bounds:</B> 95%</LI>
+</UL>
+
+<TABLE class="data-table">
+  <THEAD>
+    <TR>
+      <TH>Task Name</TH>
+      <TH>UUID</TH>
+      <TH>Failures</TH>
+      <TH>Total Evaluations</TH>
+      <TH>Failure percent</TH>
+      <TH>Confidence interval LB</TH>
+      <TH>Confidence interval UB</TH>
+    </TR>
+  </THEAD>
+  <TBODY>
+    
+    <TR>
+      <TD>abcd1234</TD>
+      <TD>abcd1234</TD>
+      <TD>30</TD>
+      <TD>80</TD>
+      <TD>37.50%</TD>
+      <TD>51.55%</TD>
+      <TD>72.31%</TD>
+    </TR>
+    
+    <TR>
+      <TD>abce1235</TD>
+      <TD>abce1235</TD>
+      <TD>40</TD>
+      <TD>84</TD>
+      <TD>47.62%</TD>
+      <TD>41.83%</TD>
+      <TD>62.72%</TD>
+    </TR>
+    
+  </TBODY>
+</TABLE>
+
+
+<H3 ID="contract_stats">Contract-Based Statistics</H3>
+<UL>
+  <LI><B>Confidence Interval Bounds:</B> 95%</LI>
+</UL>
+
+<TABLE class="data-table">
+  <THEAD>
+    <TR>
+      <TH>Contract Name</TH>
+      <TH>Metadata Type</TH>
+      <TH>Failures</TH>
+      <TH>Total Evaluations</TH>
+      <TH>Failure percent</TH>
+      <TH>Confidence interval LB</TH>
+      <TH>Confidence interval UB</TH>
+    </TR>
+  </THEAD>
+  <TBODY>
+    
+    <TR>
+      <TD>SPEC0</TD>
+      <TD>contract</TD>
+      <TD>3</TD>
+      <TD>20</TD>
+      <TD>15.00%</TD>
+      <TD>63.96%</TD>
+      <TD>94.76%</TD>
+    </TR>
+    
+    <TR>
+      <TD>SPEC1</TD>
+      <TD>contract</TD>
+      <TD>11</TD>
+      <TD>20</TD>
+      <TD>55.00%</TD>
+      <TD>25.82%</TD>
+      <TD>65.79%</TD>
+    </TR>
+    
+    <TR>
+      <TD>SPEC2</TD>
+      <TD>contract</TD>
+      <TD>15</TD>
+      <TD>24</TD>
+      <TD>62.50%</TD>
+      <TD>21.16%</TD>
+      <TD>57.29%</TD>
+    </TR>
+    
+    <TR>
+      <TD>SPEC3</TD>
+      <TD>contract</TD>
+      <TD>12</TD>
+      <TD>36</TD>
+      <TD>33.33%</TD>
+      <TD>50.33%</TD>
+      <TD>79.79%</TD>
+    </TR>
+    
+    <TR>
+      <TD>SPEC4</TD>
+      <TD>contract</TD>
+      <TD>19</TD>
+      <TD>32</TD>
+      <TD>59.38%</TD>
+      <TD>25.52%</TD>
+      <TD>57.74%</TD>
+    </TR>
+    
+    <TR>
+      <TD>SPEC5</TD>
+      <TD>contract</TD>
+      <TD>10</TD>
+      <TD>32</TD>
+      <TD>31.25%</TD>
+      <TD>51.43%</TD>
+      <TD>82.05%</TD>
+    </TR>
+    
+  </TBODY>
+</TABLE>
+
+
+
+
+<H3 ID="mc_summary">Monte Carlo Simulation Summary</H3>
+<TABLE class="data-table">
+    <TBODY>
+        <TR>
+            <TD>Number of Iterations</TD>
+            <TD>4</TD>
+        </TR>
+        <TR>
+            <TD>Stopping Rule</TD>
+            <TD>1000</TD>
+        </TR>
+        <TR>
+            <TD>Number of Contracts</TD>
+            <TD>6</TD>
+        </TR>
+        <TR>
+            <TD>Evaluations per Iteration</TD>
+            <TD>41.0</TD>
+        </TR>
+        <TR>
+            <TD>Total Evaluations</TD>
+            <TD>164</TD>
+        </TR>
+	<TR>
+            <TD>Passed Evaluations</TD>
+            <TD>94</TD>
+        </TR>
+	<TR>
+            <TD>Failed Evaluations</TD>
+            <TD>70</TD>
+        </TR>
+	<TR>
+	  <TD>Passed %</TD>
+            <TD>57.3170731707317</TD>
+        </TR>
+	<TR>
+            <TD>Failed %</TD>
+            <TD>42.68292682926829</TD>
+        </TR>
+	<TR>
+            <TD>Confidence Interval Bound</TD>
+            <TD> 95%</TD>
+        </TR>
+    </TBODY>
+</TABLE>
+
+<!------------ SECTIONS ------------>
+
+<DIV class="landscape">
+  <H2 ID="visual_out">Visualizing Timeline Outcomes</H2>
+  <H3 ID="task_visual">Task Outcome Visualization</H3>
+  <img src="../images/task_heatmap.png" alt="Timeline graph" class="heatmap">
+
+</DIV>
+<DIV class="landscape">
+  <H3 ID="contract_visual">Contract Outcome Visualization</H3>
+  <img src="../images/contract_heatmap.png" alt="Timeline graph" class="heatmap">
+</DIV>
+<DIV CLASS="page-break"></DIV>
+
+<!------------ SECTIONS ------------>
+
+<H2 ID="tqa">Timeline Quality Assessment</H2>
+  <P><B>Criteria: </B></P>
+  <P></P>
+
+
+  <P><B>Assessment Summary: </B></P>
+  <UL>
+    <LI><B>Strengths: </B></LI>
+    <LI><B>Weaknesses: </B></LI>
+  </UL>
+  <P><B>Risk Evaluation: </B></P>
+  <P></P>
+
+  
+<DIV CLASS="page-break"></DIV>
+
+
+<!------------ CONCLUSION ------------>
+<H2 ID="conclusion">CONCLUSION</H2>
+  <P><B>Overall Veridict: </B></P>
+  <P></P>
+  <P><B>Recommendation: </B></P>
+  <UL>
+    <P></P>
+  </UL>
+</BODY>
+</HTML>

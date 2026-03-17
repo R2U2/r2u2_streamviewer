@@ -1,0 +1,352 @@
+<!DOCTYPE HTML>
+
+<HTML lang="en">
+<HEAD>
+<TITLE>Timeline Validation Statistical Analysis Report</TITLE>
+
+<STYLE>
+    @page {
+        margin: 1in;
+	@bottom-center {
+            content: counter(page);
+            font-size: 10pt;
+        }
+    }
+
+    body {
+        font-family: serif;
+        line-height: 1.6;
+    }
+
+    .title-page {
+        text-align: center;
+        margin-top: 35%;
+    }
+
+    .author {
+        margin-top: 2em;
+        font-weight: bold;
+	font-size: 14pt;
+    }
+
+    .date {
+        margin-top: 0.5em;
+	font-size: 12pt;
+    }
+
+    .page-break {
+        page-break-before: always;
+    }
+
+    h1, h2 {
+        page-break-after: avoid;
+    }
+    
+    .data-table {
+	border-collapse: collapse;
+	max-width: 100%;
+	width: 100%;
+	table-layout: fixed;
+    }
+    .data-table th {
+	border: 1px solid black;
+	background-color: #D3D3D3;
+	color: black;
+	text-align: center;
+	font-size: 12px;
+    }
+    .data-table td {
+	border: 1px solid black;
+	padding: 6px;
+	text-align: left;
+	word-wrap: break-word;
+    }
+
+    @page landscape_page {
+    size: A4 landscape;
+    margin: 1cm;
+    }
+
+    .landscape {
+	page: landscape_page;
+    }
+    .heatmap {
+    display: block;
+    margin: auto;
+    width: 60%;
+    max-height: 90vh;
+    height: auto;
+    object-fit: contain;
+    page-break-inside: avoid;
+    }
+</STYLE>
+
+</HEAD>
+
+<BODY>
+
+  <!------------ TITLE PAGE ------------>
+  <DIV CLASS="title-page">
+    <H1>Timeline Validation Statistical Analysis Report</H1>
+    <P class="author">{{AUTHOR}}</P>
+    <P class="date">{{DATE}}</P>
+  </DIV>
+
+
+<!------------ TABLE OF CONTENTS ------------>
+<H2> Table of Contents </H2>
+
+<UL CLASS="TofC">
+  <LI><A href="#summary">Summary</A></LI>
+  <LI><A href="#intro">Introductions</A></LI>
+  <LI><A href="#timeline_configs">Timeline Configurations</A></LI>
+  <LI><A href="#r2u2_output_analysis">Statistical Analysis of R2U2 Output</A>
+  <UL>
+    <LI><A href="#overall_stats">Overall Statistics</A></LI>
+    <LI><A href="#task_stats">Task-Based Statistics</A></LI>
+    <LI><A href="#contract_stats">Contract-Based Statistics</A></LI>
+    <LI><A href="#mc_summary">Monte Carlo Simulation Summary</A></LI>
+  </UL>
+  </LI>
+  <LI><A href="#visual_out">Visualizing Timeline Outcomes</A>
+  <UL>
+    <LI><A href="#task_visual">Task Outcome Visualization</A></LI>
+    <LI><A href="#contract_visual">Contract Outcome Visualization</A></LI>
+  </UL>
+  </LI>
+  <LI><A href="#conclusion">Conclusion</A></LI>
+</UL>
+
+<DIV CLASS="page-break"></DIV>
+
+
+<!------------ Summary (takes user input) ------------>
+
+<H2 ID="summary">Summary</H2>
+<P>{{SUMMARY}}</P>
+
+<!------------ Summary (auto generated) ------------>
+<H2 ID="intro">Introduction</H2>
+  <P>Analysis was conducted on <B>{{num_mc_iter}} mission timelines</B> using a  <B>{{stop_rule}}-run stopping rule</B>.</P>
+  
+  <P>The analysis evaluates the timeline from <B>{{timeline_filename}}</B>.</P>
+
+  <P>There are <B>{{events_per_timeline}} events</B> per timeline instance.</P>
+  
+  <P><B>{{failed_task_num}} tasks</B> failed at some point during the Monte Carlo Trial.</P>
+
+  <P>The most frequently failed task was <B>Task {{most_failed_task}}</B>.</P>
+
+
+<DIV CLASS="page-break"></DIV>
+<!------------ SECTIONS ------------>
+
+<H2 ID="timeline_configs">Timeline Configurations</H2>
+  <P><B>Timeline Name: </B>{{timeline_name}}</P>
+  <P><B>Timeline Identifier: </B>{{timeline_id}}</P>
+  <P><B>Filename & Location: </B>{{filename_ext_and_path}}</P>
+  <P><B>Start of Timeline: </B>{{t_start}}</P>
+  <P><B>End of Timeline: </B></P>
+  <UL>
+    <LI><B>Minimum: </B>{{t_end_min}}</LI>
+    <LI><B>Maximum: </B>{{t_end_max}}</LI>
+  </UL>
+  <P><B>Timeline Minimum Duration: </B>{{min_duration}}</P>
+  <P><B>Timeline Maximum Duration: </B>{{max_duration}}</P>
+
+  <P><B>Configuration Parameters: </B></P>
+  <UL>
+    <LI><B>Probability Density Function: </B>{{pdf_filename}}</LI>
+  </UL>
+
+<DIV CLASS="page-break"></DIV>
+
+<!------------ SECTIONS ------------>
+
+<H2 ID="r2u2_output_analysis">Statistical Analysis of R2U2 Output</H2>
+
+<H3 ID="overall_stats">Overall Statistics</H3>
+<TABLE class="data-table">
+    <TBODY>
+        <TR>
+            <TD>Total Contracts Evaluated</TD>
+            <TD>{{total_contracts}}</TD>
+        </TR>
+        <TR>
+            <TD>Contracts Passed</TD>
+            <TD>{{contracts_passed}}</TD>
+        </TR>
+        <TR>
+            <TD>Contracts Failed</TD>
+            <TD>{{contracts_failed}}</TD>
+        </TR>
+        <TR>
+            <TD>Pass Percentage</TD>
+            <TD>{{pass_percent}}</TD>
+        </TR>
+        <TR>
+            <TD>Fail Percentage</TD>
+            <TD>{{fail_percent}}</TD>
+        </TR>
+    </TBODY>
+</TABLE>
+
+
+
+<H3 ID="task_stats">Task-Based Statistics</H3>
+<UL>
+  <LI><B>Confidence Interval Bounds:</B>{{conf_interval}}</LI>
+</UL>
+
+<TABLE class="data-table">
+  <THEAD>
+    <TR>
+      <TH>Task Name</TH>
+      <TH>UUID</TH>
+      <TH>Failures</TH>
+      <TH>Total Evaluations</TH>
+      <TH>Failure percent</TH>
+      <TH>Confidence interval LB</TH>
+      <TH>Confidence interval UB</TH>
+    </TR>
+  </THEAD>
+  <TBODY>
+    {% for task in tasks %}
+    <TR>
+      <TD>{{ task.name }}</TD>
+      <TD>{{ task.uuid }}</TD>
+      <TD>{{ task.failures }}</TD>
+      <TD>{{ task.total_evaluations }}</TD>
+      <TD>{{ task.failure_percent }}</TD>
+      <TD>{{ task.confidence_lower }}</TD>
+      <TD>{{ task.confidence_upper }}</TD>
+    </TR>
+    {% endfor %}
+  </TBODY>
+</TABLE>
+
+
+<H3 ID="contract_stats">Contract-Based Statistics</H3>
+<UL>
+  <LI><B>Confidence Interval Bounds:</B>{{conf_interval}}</LI>
+</UL>
+
+<TABLE class="data-table">
+  <THEAD>
+    <TR>
+      <TH>Contract Name</TH>
+      <TH>Metadata Type</TH>
+      <TH>Failures</TH>
+      <TH>Total Evaluations</TH>
+      <TH>Failure percent</TH>
+      <TH>Confidence interval LB</TH>
+      <TH>Confidence interval UB</TH>
+    </TR>
+  </THEAD>
+  <TBODY>
+    {% for contract in contracts %}
+    <TR>
+      <TD>{{ contract.name }}</TD>
+      <TD>{{ contract.uuid }}</TD>
+      <TD>{{ contract.failures }}</TD>
+      <TD>{{ contract.total_evaluations }}</TD>
+      <TD>{{ contract.failure_percent }}</TD>
+      <TD>{{ contract.confidence_lower }}</TD>
+      <TD>{{ contract.confidence_upper }}</TD>
+    </TR>
+    {% endfor %}
+  </TBODY>
+</TABLE>
+
+
+
+
+<H3 ID="mc_summary">Monte Carlo Simulation Summary</H3>
+<TABLE class="data-table">
+    <TBODY>
+        <TR>
+            <TD>Number of Iterations</TD>
+            <TD>{{num_mc_iter}}</TD>
+        </TR>
+        <TR>
+            <TD>Stopping Rule</TD>
+            <TD>{{stop_rule}}</TD>
+        </TR>
+        <TR>
+            <TD>Number of Contracts</TD>
+            <TD>{{total_contracts}}</TD>
+        </TR>
+        <TR>
+            <TD>Evaluations per Iteration</TD>
+            <TD>{{eval_per_iter}}</TD>
+        </TR>
+        <TR>
+            <TD>Total Evaluations</TD>
+            <TD>{{total_evals}}</TD>
+        </TR>
+	<TR>
+            <TD>Passed Evaluations</TD>
+            <TD>{{passed_evals}}</TD>
+        </TR>
+	<TR>
+            <TD>Failed Evaluations</TD>
+            <TD>{{failed_evals}}</TD>
+        </TR>
+	<TR>
+	  <TD>Passed %</TD>
+            <TD>{{passed_percent_evals}}</TD>
+        </TR>
+	<TR>
+            <TD>Failed %</TD>
+            <TD>{{failed_percent_evals}}</TD>
+        </TR>
+	<TR>
+            <TD>Confidence Interval Bound</TD>
+            <TD>{{conf_interval}}</TD>
+        </TR>
+    </TBODY>
+</TABLE>
+
+<!------------ SECTIONS ------------>
+
+<DIV class="landscape">
+  <H2 ID="visual_out">Visualizing Timeline Outcomes</H2>
+  <H3 ID="task_visual">Task Outcome Visualization</H3>
+  <img src="../../images/task_heatmap.png" alt="Timeline graph" class="heatmap">
+
+</DIV>
+<DIV class="landscape">
+  <H3 ID="contract_visual">Contract Outcome Visualization</H3>
+  <img src="../../images/contract_heatmap.png" alt="Timeline graph" class="heatmap">
+</DIV>
+<DIV CLASS="page-break"></DIV>
+
+<!------------ SECTIONS ------------>
+
+<H2 ID="tqa">Timeline Quality Assessment</H2>
+  <P><B>Criteria: </B></P>
+  <P>{{CRITERIA}}</P>
+
+
+  <P><B>Assessment Summary: </B></P>
+  <UL>
+    <LI><B>Strengths: </B>{{STRENGTHS}}</LI>
+    <LI><B>Weaknesses: </B>{{WEAKNESSES}}</LI>
+  </UL>
+  <P><B>Risk Evaluation: </B></P>
+  <P>{{RISK_EVAL}}</P>
+
+  
+<DIV CLASS="page-break"></DIV>
+
+
+<!------------ CONCLUSION ------------>
+<H2 ID="conclusion">CONCLUSION</H2>
+  <P><B>Overall Veridict: </B></P>
+  <P>{{VERDICT}}</P>
+  <P><B>Recommendation: </B></P>
+  <UL>
+    <P>{{RECOMMENDATION}}</P>
+  </UL>
+</BODY>
+</HTML>
