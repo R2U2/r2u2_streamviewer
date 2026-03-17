@@ -4,7 +4,7 @@
 The R2U2 Streamviewer is a PyQt5-based GUI for visualizing timeline output data from R2U2. This application provides interactive heatmaps for visualization of timeline data, data filtering for statistical analysis, and automated PDF report generation.
 
 ## Structure
-
+```
 .
 ├── demos/
 │   ├── data/
@@ -22,6 +22,7 @@ The R2U2 Streamviewer is a PyQt5-based GUI for visualizing timeline output data 
 │
 ├── r2u2_streamviewer.py
 └── README.md
+```
 
 ## Requirements
 * PyQt5
