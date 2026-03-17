@@ -1,15 +1,21 @@
 #!/usr/bin/env python3
 #
 import os
-import sys
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
-import matplotlib.pyplot as plt
-import pdb
 import numpy as np
-from scipy.special import erfinv
+import sys
+
+from PyQt5.QtWidgets import (
+    QApplication, QMainWindow, QWidget, QLabel, QGridLayout, QHBoxLayout,
+    QPushButton, QComboBox, QTextEdit, QTableWidget, QGroupBox,
+    QTableWidgetItem, QHeaderView, QMessageBox, QSpinBox
+)
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QFont, QIcon
+
+import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+
+from scipy.special import erfinv
 
 from jinja2 import Environment, FileSystemLoader
 from weasyprint import HTML
