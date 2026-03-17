@@ -32,8 +32,8 @@ The R2U2 Streamviewer is a PyQt5-based GUI for visualizing timeline output data 
 ## Demos
 To run the Stream Viewer, you will need:
 
-- A **contracts list** (`contracts.txt`)
-- **Output data files** (`output_iter*.txt`)
+- A contracts list (`contracts.txt`)
+- Output data files (`output_iter*.txt`)
 
 ### Demo Data
 
