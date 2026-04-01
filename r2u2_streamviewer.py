@@ -113,15 +113,16 @@ class StreamViewer(QMainWindow):
     '''
     def __init__(self):
         super().__init__()
-        self.contracts_dict = self.read_contracts("demos/data/contracts.txt")
-        self.uuid_dict = self.read_uuid("demos/data/contracts.txt")
+        current_directory = os.path.dirname(os.path.abspath(__file__))
+        self.contracts_dict = self.read_contracts(os.path.join(current_directory, "demos/data/contracts.txt"))
+        self.uuid_dict = self.read_uuid(os.path.join(current_directory, "demos/data/contracts.txt"))
         self.data_by_iter = {}  # key: iteration number, value: data_dict
         output_files = sorted(
-            f for f in os.listdir("demos/data") if f.startswith("output_iter")
+            f for f in os.listdir(os.path.join(current_directory, "demos/data")) if f.startswith("output_iter")
         )
 
         for i, file in enumerate(output_files):
-            file_path = os.path.join("demos/data", file)
+            file_path = os.path.join(current_directory, "demos/data", file)
             self.data_by_iter[i + 1] = self.read_output(file_path, self.contracts_dict)
             pass
 
@@ -675,8 +676,8 @@ class StreamViewer(QMainWindow):
         # We will need a task plot and an all contracts plot
         task_fig = self.create_heatmap(selections=list(self.uuid_dict.keys())) # all uuid
         contract_fig = self.create_heatmap(selections=list(self.data_dict.keys())) # all contracts
-        task_path = os.path.join("demos/images", "task_heatmap.png")
-        contract_path = os.path.join("demos/images", "contract_heatmap.png")
+        task_path = os.path.join(current_directory, "demos/images", "task_heatmap.png")
+        contract_path = os.path.join(current_directory, "demos/images", "contract_heatmap.png")
 
         task_fig.savefig(task_path, dpi=300)
         contract_fig.savefig(contract_path, dpi=300)
@@ -1110,9 +1111,62 @@ class StreamViewer(QMainWindow):
         float
             Z-score corresponding to the two-sided confidence level.
         '''
-        p = 1 - (1 - value/100)/2
-        z = np.sqrt(2)*erfinv(2*p - 1)
+        # The Wilson Confidence Interval method uses standard normal zscores for a desired confidence interval.
+        # Because we only do confidence intervals every 5%, there are only 20 values and we just do a table lookup here
+        z = 0
+        match value:
+            case 95:
+                z = 1.96
+            case 90:
+                z = 1.645
+            case 85:
+                z = 1.4395
+            case 80:
+                z = 1.2816
+            case 75:
+                z = 1.1503
+            case 70:
+                z = 1.0364
+            case 65:
+                z = 0.9346
+            case 60:
+                z = 0.8416
+            case 55:
+                z = 0.7554
+            case 50:
+                z = 0.6745
+            case 45:
+                z = 0.5978
+            case 40:
+                z = 0.5244
+            case 35:
+                z = 0.4538
+            case 30:
+                z = 0.3853
+            case 25:
+                z = 0.3186
+            case 20:
+                z = 0.2533
+            case 15:
+                z = 0.1891
+            case 10:
+                z = 0.1257
+            case 5:
+                z = 0.0627
+            case _:
+                z = 0
+                print("Invalid confidence interval value")
+            # p = 1 - (1 - value/100)/2 #p is also the mean for this distribution type
+            # deviation = np.sqrt(p*(1-p)/n)
+            # z = 1-((value/100) - p) / deviation
+            # #z = np.sqrt(2)*erfinv(2*p - 1)
+            # #z = 0
+            # print("value: ", value)
+            # print("deviation: ", deviation)
+            # print("p: ", p)
+            # print("z: ", z)
         return z
+
 
     def update_confidence_interval(self,value,table):
         '''
